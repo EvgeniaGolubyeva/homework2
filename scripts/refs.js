@@ -5,4 +5,5 @@
 /// <reference path="../lib/DefinitelyTyped/angularjs/angular.d.ts" />
 /// <reference path="../lib/DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../lib/DefinitelyTyped/jquery-ui/jqueryui.d.ts" />
+/// <reference path="../scripts/model/ProductModel.ts" />
 //# sourceMappingURL=refs.js.map

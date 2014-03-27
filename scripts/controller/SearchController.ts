@@ -2,24 +2,13 @@
 
 /// <reference path="../refs.ts" />
 
-//create search page controller
 class SearchController {
-    static $inject = ['$scope', '$http', '$location'];
+    static $inject = ['$scope', 'ProductService'];
 
-    constructor ($scope, $http, $location) {
-
-        //TODO extract json from controller into separate server
-        $http.get('data/search.json')
-            .success(function (data) {
-                $scope.searchProducts = data.items;
-            })
-            .error(function() {
-                console.log("Wasn't able to parse JSON")
-            });
-
-        $scope.home = () => {
-            $location.url('/');
-        }
+    constructor ($scope, ProductService) {
+        ProductService.getSearchProducts().then (function (data) {
+            $scope.searchProducts = <Array<Product>> data.items;
+        });
     }
 }
 

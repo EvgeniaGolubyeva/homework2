@@ -2,5 +2,28 @@
 // All other parts of the app shouldn't access data/*.json files directly, instead they should use this service.
 // Leverage as many TypeScript features (classes, type annotations, lambdas, etc.)
 // as you can (and as it seems reasonable to you ;))
-//have no idea how to do this
+/// <reference path="../refs.ts" />
+var ProductService = (function () {
+    function ProductService($http, $q) {
+        this.FEATURED_PRODUCTS_FILE = 'data/featured.json';
+        this.SEARCH_PRODUCTS_FILE = 'data/search.json';
+        this.getDataFromJSON = function (fileName) {
+            return $http.get(fileName).then(function (response) {
+                return response.data;
+            }, function (reason) {
+                $q.reject(reason);
+            });
+        };
+    }
+    ProductService.prototype.getFeaturedProducts = function () {
+        return this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE);
+    };
+
+    ProductService.prototype.getSearchProducts = function () {
+        return this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE);
+    };
+    ProductService.$inject = ['$http', '$q'];
+    return ProductService;
+})();
+angular.module('auction').service('ProductService', ProductService);
 //# sourceMappingURL=ProductService.js.map

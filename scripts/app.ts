@@ -12,7 +12,6 @@ auctionApplication.config(['$routeProvider', function ($routeProvider) {
         .when ('/', {
             templateUrl: 'views/home.html',
             controller: 'HomeController'
-//            resolve: HomeController.resolve
         })
         .when('/search', {
             templateUrl: 'views/search.html',
@@ -22,7 +21,6 @@ auctionApplication.config(['$routeProvider', function ($routeProvider) {
             redirectTo: '/'
         });
 }]);
-
 
 //initialize jquery-ui slider
 //have no idea how it works or where in should be placed in file structure, guess it will be explained in Unit 3
