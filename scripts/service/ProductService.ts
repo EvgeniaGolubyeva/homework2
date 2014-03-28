@@ -23,12 +23,8 @@ class ProductService {
         };
     }
 
-    getFeaturedProducts() {
-        return this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE);
-    }
-
-    getSearchProducts() {
-        return this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE);
-    }
+    getFeaturedProducts = () => this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE)
+    getSearchProducts = () => this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE)
 }
+
 angular.module('auction').service('ProductService', ProductService);
