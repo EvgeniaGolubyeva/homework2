@@ -6,4 +6,6 @@
 /// <reference path="../lib/DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../lib/DefinitelyTyped/jquery-ui/jqueryui.d.ts" />
 /// <reference path="../scripts/model/ProductModel.ts" />
+/// <reference path="../scripts/controller/HomeController.ts" />
+/// <reference path="../scripts/controller/SearchController.ts" />
 //# sourceMappingURL=refs.js.map

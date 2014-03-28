@@ -5,6 +5,15 @@ var SearchController = (function () {
         $scope.searchProducts = searchProducts;
     }
     SearchController.$inject = ['$scope', 'searchProducts'];
+
+    SearchController.resolve = {
+        searchProducts: [
+            'ProductService', function (productService) {
+                return productService.getSearchProducts().then(function (data) {
+                    return data.items;
+                });
+            }]
+    };
     return SearchController;
 })();
 

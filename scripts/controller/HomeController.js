@@ -5,6 +5,15 @@ var HomeController = (function () {
         $scope.featuredProducts = featuredProducts;
     }
     HomeController.$inject = ['$scope', 'featuredProducts'];
+
+    HomeController.resolve = {
+        featuredProducts: [
+            'ProductService', function (productService) {
+                return productService.getFeaturedProducts().then(function (data) {
+                    return data.items;
+                });
+            }]
+    };
     return HomeController;
 })();
 

@@ -8,6 +8,14 @@ class HomeController {
     constructor ($scope, featuredProducts: Array<Product>) {
         $scope.featuredProducts = featuredProducts;
     }
+
+    public static resolve = {
+        featuredProducts: ['ProductService', function(productService) {
+            return productService.getFeaturedProducts().then (function (data) {
+                return <Array<Product>> data.items;
+            });
+        }]
+    }
 }
 
 angular.module('auction').controller('HomeController', HomeController);
