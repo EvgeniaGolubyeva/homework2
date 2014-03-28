@@ -3,12 +3,10 @@
 /// <reference path="../refs.ts" />
 
 class HomeController {
-    static $inject = ['$scope', 'ProductService'];
+    static $inject = ['$scope', 'featuredProducts'];
 
-    constructor ($scope, ProductService) {
-        ProductService.getFeaturedProducts().then (function (data) {
-            $scope.featuredProducts =  <Array<Product>> data.items;
-        });
+    constructor ($scope, featuredProducts: Array<Product>) {
+        $scope.featuredProducts = featuredProducts;
     }
 }
 

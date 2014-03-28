@@ -1,12 +1,10 @@
 // Implement SearchController here. It should manage Search Results page.
 /// <reference path="../refs.ts" />
 var SearchController = (function () {
-    function SearchController($scope, ProductService) {
-        ProductService.getSearchProducts().then(function (data) {
-            $scope.searchProducts = data.items;
-        });
+    function SearchController($scope, searchProducts) {
+        $scope.searchProducts = searchProducts;
     }
-    SearchController.$inject = ['$scope', 'ProductService'];
+    SearchController.$inject = ['$scope', 'searchProducts'];
     return SearchController;
 })();
 

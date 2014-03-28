@@ -3,12 +3,10 @@
 /// <reference path="../refs.ts" />
 
 class SearchController {
-    static $inject = ['$scope', 'ProductService'];
+    static $inject = ['$scope', 'searchProducts'];
 
-    constructor ($scope, ProductService) {
-        ProductService.getSearchProducts().then (function (data) {
-            $scope.searchProducts = <Array<Product>> data.items;
-        });
+    constructor ($scope, searchProducts: Array<Product>) {
+        $scope.searchProducts = searchProducts;
     }
 }
 

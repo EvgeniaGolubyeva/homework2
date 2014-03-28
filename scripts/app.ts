@@ -11,11 +11,25 @@ auctionApplication.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when ('/', {
             templateUrl: 'views/home.html',
-            controller: 'HomeController'
+            controller: 'HomeController',
+            resolve: {
+                featuredProducts: ['ProductService', function(productService) {
+                    return productService.getFeaturedProducts().then (function (data) {
+                        return <Array<Product>> data.items;
+                    });
+                }]
+            }
         })
         .when('/search', {
             templateUrl: 'views/search.html',
-            controller: 'SearchController'
+            controller: 'SearchController',
+            resolve: {
+                searchProducts: ['ProductService', function(productService) {
+                    return productService.getSearchProducts().then (function (data) {
+                        return <Array<Product>> data.items;
+                    });
+                }]
+            }
         })
         .otherwise({
             redirectTo: '/'
