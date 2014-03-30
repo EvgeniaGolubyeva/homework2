@@ -69,4 +69,4 @@ var Product = (function () {
     });
     return Product;
 })();
-//# sourceMappingURL=ProductModel.js.map
+//# sourceMappingURL=Product.js.map

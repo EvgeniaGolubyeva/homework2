@@ -1,16 +1,19 @@
 // Implement HomeController here. It should manage Home page.
 /// <reference path="../refs.ts" />
+'use strict';
 var HomeController = (function () {
-    function HomeController($scope, featuredProducts) {
-        $scope.featuredProducts = featuredProducts;
+    function HomeController(featuredProducts, $scope) {
+        this.featuredProducts = featuredProducts;
+        this.$scope = $scope;
+        this.$scope.model = this;
     }
-    HomeController.$inject = ['$scope', 'featuredProducts'];
+    HomeController.$inject = ['featuredProducts', '$scope'];
 
     HomeController.resolve = {
         featuredProducts: [
             'ProductService', function (productService) {
                 return productService.getFeaturedProducts().then(function (data) {
-                    return data.items;
+                    return data;
                 });
             }]
     };

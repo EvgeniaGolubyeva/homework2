@@ -6,25 +6,35 @@
 
 /// <reference path="../refs.ts" />
 
-class ProductService {
-    static $inject = ['$http', '$q'];
+'use strict'
+
+interface IProductService {
+    getFeaturedProducts: () => ng.IPromise<Product[]>;
+    getSearchProducts:   () => ng.IPromise<Product[]>;
+}
+
+class ProductService implements IProductService {
+    static $inject = ['$http', '$q', '$log'];
 
     private FEATURED_PRODUCTS_FILE: string = 'data/featured.json';
-    private SEARCH_PRODUCTS_FILE: string = 'data/search.json';
+    private SEARCH_PRODUCTS_FILE:   string = 'data/search.json';
 
-    private getDataFromJSON: Function;
+    constructor(private $http: ng.IHttpService,
+                private $q:    ng.IQService,
+                private $log:  ng.ILogService)
+    {}
 
-    constructor($http, $q) {
-        this.getDataFromJSON = (fileName) => {
-            return $http.get(fileName).then(
-                function(response) {return response.data},
-                function(reason) {$q.reject(reason)}
-            )
-        };
+    getFeaturedProducts = (): ng.IPromise<Product[]> => this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE);
+    getSearchProducts   = (): ng.IPromise<Product[]> => this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE);
+
+    private getDataFromJSON = (fileName: string): ng.IPromise<Product[]> => {
+        return this.$http.get(fileName).then(
+            (response) => {return <Product[]> response.data.items;},
+            (reason)   => {
+                this.$log.error("Can not load file " + fileName);
+                return this.$q.reject(reason);
+            });
     }
-
-    getFeaturedProducts = () => this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE)
-    getSearchProducts = () => this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE)
 }
 
 angular.module('auction').service('ProductService', ProductService);

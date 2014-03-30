@@ -1,5 +1,6 @@
 // Use this file to *create* an AngularJS module for your app and configure $routeProvider.
 /// <reference path="refs.ts" />
+'use strict';
 //create a module for an application
 var auctionApplication = angular.module('auction', ['ngRoute']);
 
@@ -25,7 +26,7 @@ auctionApplication.config([
 auctionApplication.directive('slider', function () {
     var directive = {
         restrict: 'A',
-        link: function (scope, element, attrs, ctrl) {
+        link: function (scope, element, attrs) {
             scope.$watch(attrs.slider, function (value) {
                 setTimeout(function () {
                     $(element[0]).slider({

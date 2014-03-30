@@ -1,5 +1,6 @@
 // Implement "POJO" here to keep data of a single Product item.
 
+
 class Product {
     private _id: number;
     private _title: string;
@@ -26,3 +27,4 @@ class Product {
     get price(): number {return this._price}
     set price(val: number) {this._price = val;}
 }
+

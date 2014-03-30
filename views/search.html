@@ -109,7 +109,7 @@
 
         <ul id="search-results-list" class="list-unstyled">
 
-            <li class="col-md-6" ng-repeat="product in searchProducts">
+            <li class="col-md-6" ng-repeat="product in model.searchProducts">
 
                 <div class="row">
                     <div class="col-md-4">
@@ -148,7 +148,7 @@
 
                     <div class="col-sm-4">
                         <div class="col-sm-12 col-xs-5">
-                            ${{product.price}}
+                            {{product.price | currency}}
                         </div>
                         <div class="col-sm-12 col-xs-7">
                             Current Price

@@ -3,10 +3,12 @@
 // It should also contain references to DefinitelyTyped's ambient declaration
 // files for the 3rd-party libraries you use in your app.
 
-/// <reference path="../lib/DefinitelyTyped/angularjs/angular.d.ts" />
 /// <reference path="../lib/DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../lib/DefinitelyTyped/jquery-ui/jqueryui.d.ts" />
+/// <reference path="../lib/DefinitelyTyped/angularjs/angular.d.ts" />
+/// <reference path="../lib/DefinitelyTyped/angularjs/angular-route.d.ts" />
 
-/// <reference path="../scripts/model/ProductModel.ts" />
-/// <reference path="../scripts/controller/HomeController.ts" />
-/// <reference path="../scripts/controller/SearchController.ts" />
+/// <reference path="model/Product.ts" />
+/// <reference path="controller/HomeController.ts" />
+/// <reference path="controller/SearchController.ts" />
+/// <reference path="../scripts/service/ProductService.ts" />
