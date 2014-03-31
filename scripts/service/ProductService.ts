@@ -8,13 +8,15 @@
 
 'use strict'
 
-interface IProductService {
-    getFeaturedProducts: () => ng.IPromise<Product[]>;
-    getSearchProducts:   () => ng.IPromise<Product[]>;
-}
+module auctionServices {
 
-class ProductService implements IProductService {
-    static $inject = ['$http', '$q', '$log'];
+    export interface IProductService {
+        getFeaturedProducts: () => ng.IPromise<Product[]>;
+        getSearchProducts:   () => ng.IPromise<Product[]>;
+    }
+
+    export class ProductService implements IProductService {
+    public static $inject = ['$http', '$q', '$log'];
 
     private FEATURED_PRODUCTS_FILE: string = 'data/featured.json';
     private SEARCH_PRODUCTS_FILE:   string = 'data/search.json';
@@ -29,12 +31,13 @@ class ProductService implements IProductService {
 
     private getDataFromJSON = (fileName: string): ng.IPromise<Product[]> => {
         return this.$http.get(fileName).then(
-            (response) => {return <Product[]> response.data.items;},
+            (response) => <Product[]> response.data.items,
             (reason)   => {
                 this.$log.error("Can not load file " + fileName);
                 return this.$q.reject(reason);
             });
     }
-}
+    }
 
-angular.module('auction').service('ProductService', ProductService);
+    angular.module('auction').service('ProductService', ProductService);
+}

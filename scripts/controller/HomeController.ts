@@ -9,14 +9,14 @@ interface IHomeScope extends ng.IScope {
 }
 
 class HomeController {
-    static $inject = ['featuredProducts', '$scope'];
+    public static $inject = ['featuredProducts', '$scope'];
 
     constructor (private featuredProducts: Product[], private $scope: IHomeScope) {
         this.$scope.model = this;
     }
 
     public static resolve = {
-        featuredProducts: ['ProductService', (productService: IProductService) => {
+        featuredProducts: ['ProductService', (productService: auctionServices.IProductService) => {
             return productService.getFeaturedProducts().then ((data) => {
                 return data;
             });

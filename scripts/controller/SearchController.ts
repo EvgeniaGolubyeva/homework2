@@ -9,14 +9,14 @@ interface ISearchScope extends ng.IScope {
 }
 
 class SearchController {
-    static $inject = ['searchProducts', '$scope'];
+    public static $inject = ['searchProducts', '$scope'];
 
     constructor (private searchProducts: Product[], private $scope: ISearchScope) {
         $scope.model = this;
     }
 
     public static resolve = {
-        searchProducts: ['ProductService', function(productService) {
+        searchProducts: ['ProductService', (productService: auctionServices.IProductService) => {
             return productService.getSearchProducts().then (function (data) {
                 return data;
             });
@@ -24,4 +24,4 @@ class SearchController {
     }
 }
 
-angular.module('auction').controller('SearchModelController', SearchController);
+angular.module('auction').controller('SearchController', SearchController);

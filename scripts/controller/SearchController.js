@@ -20,5 +20,5 @@ var SearchController = (function () {
     return SearchController;
 })();
 
-angular.module('auction').controller('SearchModelController', SearchController);
+angular.module('auction').controller('SearchController', SearchController);
 //# sourceMappingURL=SearchController.js.map

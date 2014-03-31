@@ -4,32 +4,36 @@
 // as you can (and as it seems reasonable to you ;))
 /// <reference path="../refs.ts" />
 'use strict';
-var ProductService = (function () {
-    function ProductService($http, $q, $log) {
-        var _this = this;
-        this.$http = $http;
-        this.$q = $q;
-        this.$log = $log;
-        this.FEATURED_PRODUCTS_FILE = 'data/featured.json';
-        this.SEARCH_PRODUCTS_FILE = 'data/search.json';
-        this.getFeaturedProducts = function () {
-            return _this.getDataFromJSON(_this.FEATURED_PRODUCTS_FILE);
-        };
-        this.getSearchProducts = function () {
-            return _this.getDataFromJSON(_this.SEARCH_PRODUCTS_FILE);
-        };
-        this.getDataFromJSON = function (fileName) {
-            return _this.$http.get(fileName).then(function (response) {
-                return response.data.items;
-            }, function (reason) {
-                _this.$log.error("Can not load file " + fileName);
-                return _this.$q.reject(reason);
-            });
-        };
-    }
-    ProductService.$inject = ['$http', '$q', '$log'];
-    return ProductService;
-})();
+var auctionServices;
+(function (auctionServices) {
+    var ProductService = (function () {
+        function ProductService($http, $q, $log) {
+            var _this = this;
+            this.$http = $http;
+            this.$q = $q;
+            this.$log = $log;
+            this.FEATURED_PRODUCTS_FILE = 'data/featured.json';
+            this.SEARCH_PRODUCTS_FILE = 'data/search.json';
+            this.getFeaturedProducts = function () {
+                return _this.getDataFromJSON(_this.FEATURED_PRODUCTS_FILE);
+            };
+            this.getSearchProducts = function () {
+                return _this.getDataFromJSON(_this.SEARCH_PRODUCTS_FILE);
+            };
+            this.getDataFromJSON = function (fileName) {
+                return _this.$http.get(fileName).then(function (response) {
+                    return response.data.items;
+                }, function (reason) {
+                    _this.$log.error("Can not load file " + fileName);
+                    return _this.$q.reject(reason);
+                });
+            };
+        }
+        ProductService.$inject = ['$http', '$q', '$log'];
+        return ProductService;
+    })();
+    auctionServices.ProductService = ProductService;
 
-angular.module('auction').service('ProductService', ProductService);
+    angular.module('auction').service('ProductService', ProductService);
+})(auctionServices || (auctionServices = {}));
 //# sourceMappingURL=ProductService.js.map
