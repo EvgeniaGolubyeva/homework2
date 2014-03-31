@@ -7,7 +7,6 @@
 //create a module for an application
 var auctionApplication = angular.module('auction', ['ngRoute']);
 
-
 //config routerProvider
 auctionApplication.config(['$routeProvider', ($routeProvider: ng.route.IRouteProvider) => {
     $routeProvider

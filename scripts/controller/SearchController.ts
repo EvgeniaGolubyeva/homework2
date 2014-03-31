@@ -11,12 +11,12 @@ interface ISearchScope extends ng.IScope {
 class SearchController {
     public static $inject = ['searchProducts', '$scope'];
 
-    constructor (private searchProducts: Product[], private $scope: ISearchScope) {
+    constructor (private searchProducts: auction.model.Product[], private $scope: ISearchScope) {
         $scope.model = this;
     }
 
     public static resolve = {
-        searchProducts: ['ProductService', (productService: auctionServices.IProductService) => {
+        searchProducts: ['ProductService', (productService: auction.service.IProductService) => {
             return productService.getSearchProducts().then (function (data) {
                 return data;
             });

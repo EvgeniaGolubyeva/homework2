@@ -8,11 +8,13 @@
 
 'use strict'
 
-module auctionServices {
+module auction.service {
+
+    import m = auction.model;
 
     export interface IProductService {
-        getFeaturedProducts: () => ng.IPromise<Product[]>;
-        getSearchProducts:   () => ng.IPromise<Product[]>;
+        getFeaturedProducts: () => ng.IPromise<m.Product[]>;
+        getSearchProducts:   () => ng.IPromise<m.Product[]>;
     }
 
     export class ProductService implements IProductService {
@@ -26,12 +28,12 @@ module auctionServices {
                 private $log:  ng.ILogService)
     {}
 
-    getFeaturedProducts = (): ng.IPromise<Product[]> => this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE);
-    getSearchProducts   = (): ng.IPromise<Product[]> => this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE);
+    getFeaturedProducts = (): ng.IPromise<m.Product[]> => this.getDataFromJSON(this.FEATURED_PRODUCTS_FILE);
+    getSearchProducts   = (): ng.IPromise<m.Product[]> => this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE);
 
-    private getDataFromJSON = (fileName: string): ng.IPromise<Product[]> => {
+    private getDataFromJSON = (fileName: string): ng.IPromise<m.Product[]> => {
         return this.$http.get(fileName).then(
-            (response) => <Product[]> response.data.items,
+            (response) => <m.Product[]> response.data.items,
             (reason)   => {
                 this.$log.error("Can not load file " + fileName);
                 return this.$q.reject(reason);
